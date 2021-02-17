@@ -23,7 +23,7 @@ s3 = session.resource('s3')
 bucket = s3.Bucket(BUCKET_NAME)
 
 # Print out bucket names
-print('Existing buckets:')
+print('## Existing buckets:')
 for bucket_list in s3.buckets.all():
     print(bucket_list.name)
 
@@ -31,7 +31,7 @@ for bucket_list in s3.buckets.all():
 print('## Upload a new file:')
 print('## Target Bucket is ' + bucket.name)
 
-bucket.upload_file(KEY,UPLOAD_FILE)
+bucket.upload_file(KEY,UPLOAD_FILE,ExtraArgs={'ACL': 'public-read'})
 obj = bucket.Object(UPLOAD_FILE)
 print('## Upload File is ' + obj.key)
 
